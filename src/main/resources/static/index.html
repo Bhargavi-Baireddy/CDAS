@@ -3238,7 +3238,7 @@
         try {
 
             const response = await fetch(
-                "http://localhost:8080/api/auth/login",
+                "https://cdas-363m.onrender.com/api/auth/login",
 
                 {
                     method: "POST",
@@ -3425,7 +3425,7 @@
         const shopCode = document.getElementById("shop-code").value;
 
         const response = await fetch(
-            `http://localhost:8080/api/eqpt/${shopCode}`
+            `https://cdas-363m.onrender.com/api/eqpt/${shopCode}`
         );
 
         const data = await response.json();
@@ -3460,7 +3460,7 @@
 
     async function loadUsers() {
         try {
-            const res = await fetch('http://localhost:8080/api/users');
+            const res = await fetch('https://cdas-363m.onrender.com/api/users');
             if (!res.ok) throw new Error('API error');
             allUsers = await res.json();
         } catch(e) {
@@ -3622,7 +3622,7 @@
 
     async function loadEquipmentMaster() {
         try {
-            const res = await fetch('http://localhost:8080/api/eqpt/shops');
+            const res = await fetch('https://cdas-363m.onrender.com/api/eqpt/shops');
             if (!res.ok) throw new Error('API error');
             allEquipment = await res.json();
         } catch(e) {
@@ -3891,7 +3891,7 @@
         const payload = { shopCode, shopDesc, eqptName, subEqptName: subEqpt, agency,
             delayFrom, delayUpto, delayDuration: duration, delayDesc, userEntered };
         try {
-            const res = await fetch(`http://localhost:8080/api/delays/${editingDelayId}`, {
+            const res = await fetch(`https://cdas-363m.onrender.com/api/delays/${editingDelayId}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload)
@@ -3934,7 +3934,7 @@
         const id = parseInt(document.getElementById('delete-confirm-id').value, 10);
         if (!id) return;
         try {
-            const res = await fetch(`http://localhost:8080/api/delays/${id}`, { method: 'DELETE' });
+            const res = await fetch(`https://cdas-363m.onrender.com/api/delays/${id}`, { method: 'DELETE' });
             if (res.ok) {
                 closeModal('delete-delay-modal');
                 showToast('success', 'Record Deleted', `Delay #${id} removed successfully.`);
@@ -4067,7 +4067,7 @@
         console.log("Selected Shop:", shopCode);
 
         const response = await fetch(
-            `http://localhost:8080/api/eqpt/shop/${shopCode}`
+            `https://cdas-363m.onrender.com/api/eqpt/shop/${shopCode}`
         );
 
         const data = await response.json();
@@ -4113,7 +4113,7 @@
             document.getElementById("eqpt-name").value;
 
         const response = await fetch(
-            `http://localhost:8080/api/eqpt/${shopCode}`
+            `https://cdas-363m.onrender.com/api/eqpt/${shopCode}`
         );
 
         const data = await response.json();
@@ -4275,7 +4275,7 @@
 
             const response = await fetch(
 
-                "http://localhost:8080/api/delays",
+                "https://cdas-363m.onrender.com/api/delays",
 
                 {
                     method: "POST",
@@ -4355,7 +4355,7 @@
         const payload = { empNo, empName, dept, designation: desig, email, role, password: pass, active };
 
         try {
-            const res = await fetch('http://localhost:8080/api/users', {
+            const res = await fetch('https://cdas-363m.onrender.com/api/users', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload)
@@ -4442,11 +4442,11 @@
     async function loadAllDelays() {
         try {
             const perms = currentUser ? ROLE_PERMS[currentUser.role] : null;
-            let url = 'http://localhost:8080/api/delays';
+            let url = 'https://cdas-363m.onrender.com/api/delays';
 
             // DEPT_USER and DEPT_ADMIN can only see their own department's delays
             if (perms && perms.deptScopedDelays && currentUser.dept) {
-                url = `http://localhost:8080/api/delays/dept/${encodeURIComponent(currentUser.dept)}`;
+                url = `https://cdas-363m.onrender.com/api/delays/dept/${encodeURIComponent(currentUser.dept)}`;
             }
 
             const res = await fetch(url);
@@ -4942,7 +4942,7 @@
     async function loadShops() {
 
         const response = await fetch(
-            "http://localhost:8080/api/eqpt/shops"
+            "https://cdas-363m.onrender.com/api/eqpt/shops"
         );
 
         const data = await response.json();
@@ -5097,7 +5097,7 @@
         var success=0,failed=0,errors=[];
         for (var row of csvParsedRows) {
             try {
-                var res=await fetch('http://localhost:8080/api/eqpt',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(row)});
+                var res=await fetch('https://cdas-363m.onrender.com/api/eqpt',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(row)});
                 if(res.ok) success++; else {failed++;errors.push(row.eqptCode);}
             } catch(e){failed++;errors.push(row.eqptCode);}
         }
