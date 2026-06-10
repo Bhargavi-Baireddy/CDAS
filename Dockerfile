@@ -6,4 +6,4 @@ COPY . .
 
 RUN mvn clean package -DskipTests
 
-CMD ["java", "-jar", "target/CDAS-0.0.1-SNAPSHOT.jar"]
+CMD ["java", "-jar", "target/cdas-0.0.1-SNAPSHOT.jar"]
